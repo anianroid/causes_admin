@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Material Admin</title>
+    
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+            
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header id="header" class="clearfix" data-current-skin="blue">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+                <li class="logo hidden-xs">
+                    <a href="index.html">Material Admin</a>
+                </li>
+            </ul>
+
+
+            <!-- Top Search Content -->
+            <div id="top-search-wrap">
+                <div class="tsw-inner">
+                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+                    <input type="text">
+                </div>
+            </div>
+        </header>
+        
+        <section id="main">
+            <aside id="sidebar" class="sidebar c-overflow">
+                <div class="profile-menu">
+                    <a href="">
+                        <div class="profile-pic">
+                            <img src="img/profile-pics/2.jpg" alt="">
+                        </div>
+
+                        <div class="profile-info">
+                            Piyush Goswami
+
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </a>
+
+                    <ul class="main-menu">
+                        <li>
+                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="main-menu">
+                    <li class="active">
+                        <a href="index.html"><i class="zmdi zmdi-home"></i> Home</a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href=""><i class="zmdi zmdi-view-compact"></i> Causes</a>
+
+                        <ul>
+                            <li><a href="new_cause.html">Add new cause</a></li>
+                            <li><a href="causes.html">Listing</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href=""><i class="zmdi zmdi-view-compact"></i> Our Team</a>
+
+                        <ul>
+                            <li><a href="textual-menu.html">Add new member</a></li>
+                            <li><a href="image-logo.html">Listing</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href=""><i class="zmdi zmdi-view-compact"></i> Videos</a>
+
+                        <ul>
+                            <li><a href="textual-menu.html">Add new video</a></li>
+                            <li><a href="image-logo.html">Listing</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+        
+        
+            <section id="content">
+                <div class="container">
+                    
+                    <div class="block-header">
+                        <h2>Piyush Goswami <small>Founder</small></h2>
+                        
+                        <ul class="actions m-t-20 hidden-xs">
+                            <li class="dropdown">
+                                <a href="" data-toggle="dropdown">
+                                    <i class="zmdi zmdi-more-vert"></i>
+                                </a>
+                    
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="">Account Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Other Settings</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card" id="profile-main">
+                        <div class="pm-overview c-overflow">
+                            <div class="pmo-pic">
+                                <div class="p-relative">
+                                    <a href="">
+                                        <img class="img-responsive" src="img/profile-pics/piyush.jpg" alt=""> 
+                                    </a>
+                                    
+                                    <div class="dropdown pmop-message">
+                                        <a data-toggle="dropdown" href="" class="btn bgm-white btn-float z-depth-1">
+                                            <i class="zmdi zmdi-comment-text-alt"></i>
+                                        </a>
+                                        
+                                        <div class="dropdown-menu">
+                                            <textarea placeholder="Write something..."></textarea>
+                                            
+                                            <button class="btn bgm-green btn-float"><i class="zmdi zmdi-mail-send"></i></button>
+                                        </div>
+                                    </div>
+                                    
+                                    <a href="" class="pmop-edit">
+                                        <i class="zmdi zmdi-camera"></i> <span class="hidden-xs">Update Profile Picture</span>
+                                    </a>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="pmo-block pmo-contact hidden-xs">
+                                <h2>Contact</h2>
+                                
+                                <ul>
+                                    <li><i class="zmdi zmdi-phone"></i> 00971 12345678 9</li>
+                                    <li><i class="zmdi zmdi-email"></i> p@restofmyfamily.org</li>
+                                    <li><i class="zmdi zmdi-facebook-box"></i> Piyush Goswami</li>
+                                    <li><i class="zmdi zmdi-twitter"></i> @piyushg (twitter.com/piyushg)</li>
+                                    <li>
+                                        <i class="zmdi zmdi-pin"></i>
+                                        <address class="m-b-0 ng-binding">
+                                           #229, 1st Main Road, R.M.V II Stage, <br />
+                                           Dollars Colony, New BEL Road, <br />
+                                           Bangalore, 560094, India
+                                        </address>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="pm-body clearfix">
+                            <ul class="tab-nav tn-justified">
+                                <li class="active waves-effect"><a>About</a></li>
+                            </ul>
+                            
+                            
+                            <div class="pmb-block">
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-equalizer m-r-5"></i> Summary</h2>
+                                    
+                                    <ul class="actions">
+                                        <li class="dropdown">
+                                            <a href="" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+                                            
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li>
+                                                    <a data-pmb-action="edit" href="">Edit</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pmbb-body p-l-30">
+                                    <div class="pmbb-view">
+                                        Sed eu est vulputate, fringilla ligula ac, maximus arcu. Donec sed felis vel magna mattis ornare ut non turpis. Sed id arcu elit. Sed nec sagittis tortor. Mauris ante urna, ornare sit amet mollis eu, aliquet ac ligula. Nullam dolor metus, suscipit ac imperdiet nec, consectetur sed ex. Sed cursus porttitor leo.
+                                    </div>
+                                    
+                                    <div class="pmbb-edit">
+                                        <div class="fg-line">
+                                            <textarea class="form-control" rows="5" placeholder="Summary...">Sed eu est vulputate, fringilla ligula ac, maximus arcu. Donec sed felis vel magna mattis ornare ut non turpis. Sed id arcu elit. Sed nec sagittis tortor. Mauris ante urna, ornare sit amet mollis eu, aliquet ac ligula. Nullam dolor metus, suscipit ac imperdiet nec, consectetur sed ex. Sed cursus porttitor leo.</textarea>
+                                        </div>
+                                        <div class="m-t-10">
+                                            <button class="btn btn-primary btn-sm">Save</button>
+                                            <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pmb-block">
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-account m-r-5"></i> Basic Information</h2>
+                                    
+                                    <ul class="actions">
+                                        <li class="dropdown">
+                                            <a href="" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+                                            
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li>
+                                                    <a data-pmb-action="edit" href="">Edit</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pmbb-body p-l-30">
+                                    <div class="pmbb-view">
+                                        <dl class="dl-horizontal">
+                                            <dt>Full Name</dt>
+                                            <dd>Piyush Goswami</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Gender</dt>
+                                            <dd>Male</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Birthday</dt>
+                                            <dd>June 23, 1990</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Martial Status</dt>
+                                            <dd>Single</dd>
+                                        </dl>
+                                    </div>
+                                    
+                                    <div class="pmbb-edit">
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Full Name</dt>
+                                            <dd>
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control" placeholder="eg. Piyush Goswami">
+                                                </div>
+                                                
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Gender</dt>
+                                            <dd>
+                                                <div class="fg-line">
+                                                    <select class="form-control">
+                                                        <option>Male</option>
+                                                        <option>Female</option>
+                                                        <option>Other</option>
+                                                    </select>
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Birthday</dt>
+                                            <dd>
+                                                <div class="dtp-container dropdown fg-line">
+                                                    <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Martial Status</dt>
+                                            <dd>
+                                                <div class="fg-line">
+                                                    <select class="form-control">
+                                                        <option>Single</option>
+                                                        <option>Married</option>
+                                                        <option>Other</option>
+                                                    </select>
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        
+                                        <div class="m-t-30">
+                                            <button class="btn btn-primary btn-sm">Save</button>
+                                            <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                        
+                            <div class="pmb-block">
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-phone m-r-5"></i> Contact Information</h2>
+                                    
+                                    <ul class="actions">
+                                        <li class="dropdown">
+                                            <a href="" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+                                            
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li>
+                                                    <a data-pmb-action="edit" href="">Edit</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pmbb-body p-l-30">
+                                    <div class="pmbb-view">
+                                        <dl class="dl-horizontal">
+                                            <dt>Mobile Phone</dt>
+                                            <dd>91 9140416706</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Email Address</dt>
+                                            <dd>p@restofmyfamily.org</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Twitter</dt>
+                                            <dd>@piyushg</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Skype</dt>
+                                            <dd>piyush.g</dd>
+                                        </dl>
+                                    </div>
+                                    
+                                    <div class="pmbb-edit">
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Mobile Phone</dt>
+                                            <dd>
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control" placeholder="eg. 91 9000000000">
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Email Address</dt>
+                                            <dd>
+                                                <div class="fg-line">
+                                                    <input type="email" class="form-control" placeholder="eg. p@restofmyfamily.org">
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Twitter</dt>
+                                            <dd>
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control" placeholder="eg. @piyushg">
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Skype</dt>
+                                            <dd>
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control" placeholder="eg. piyush.g">
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        
+                                        <div class="m-t-30">
+                                            <button class="btn btn-primary btn-sm">Save</button>
+                                            <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        
+        <footer id="footer">
+            Copyright &copy; 2015 Material Admin
+            
+            <ul class="f-menu">
+                <li><a href="">Home</a></li>
+                <li><a href="">Dashboard</a></li>
+                <li><a href="">Reports</a></li>
+                <li><a href="">Support</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </footer>
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+
+                <p>Please wait...</p>
+            </div>
+        </div>
+
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+    
+    
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+                <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+        
+        <script src="js/functions.js"></script>
+        <script src="js/demo.js"></script>
+    
+    
+    </body>
+</html>
