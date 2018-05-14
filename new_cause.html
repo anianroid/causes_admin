@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Material Admin</title>
+        <title>Causes Admin</title>
 
         <!-- Vendor CSS -->
         <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="logo hidden-xs">
-                    <a href="index.html">Material Admin</a>
+                    <a href="index.html">Causes Admin</a>
                 </li>
             </ul>
 
@@ -161,12 +161,84 @@
                                     <div class="form-group">
                                         <label>Required Amount</label>
                                         <div class="fg-line">
-                                            <input type="number" name="required_amount" onchange="handleInputChange(this, event);" class="form-control" placeholder="Eg. 1000">
+                                            <input type="number" name="requiredAmount" onchange="handleInputChange(this, event);" class="form-control" placeholder="Eg. 1000">
                                         </div>
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Payment Link</label>
+                                        <div class="fg-line">
+                                            <input type="text" name="paymentLink" onchange="handleInputChange(this, event);" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div>
+                                <h2>Content</h2>
+                            </div>  
+
+                            <div>
+                                <h3>Header content</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Aim</label>
+                                        <div class="fg-line">
+                                            <input type="text" name="aim" onchange="handleDefaultContentInputChange(this, event);" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Video Link</label>
+                                        <div class="fg-line">
+                                            <input type="text" name="videoLink" onchange="handleDefaultContentInputChange(this, event);" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3>Variable content</h3>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="c-black f-500 m-b-20">Type</p>
+                                        <div class="form-group">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select onchange="handleTypeChange(this, event)" name="type" class="form-control">
+                                                        <option>Select an Option</option>
+                                                        <option value="image">Image</option>
+                                                        <option value="text">Text</option>
+                                                        <option value="highlight">Highlight</option>
+                                                        <option value="video">Video</option>
+                                                        <option value="sectionHeading">Section Heading</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="content-input"></div>
+                            </div>
+
+                            <div id="new-variable-section"></div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary" onclick="newVariableSection()" type="button">Add new section</button>
+                            </div>
+                            
+                            <div class="form-group">
                                 <button class="btn btn-primary" id="submit-cause" type="button">Submit</button>
                             </div>                
                         </div>
@@ -176,7 +248,7 @@
         </section>
         
         <footer id="footer">
-            Copyright &copy; 2015 Material Admin
+            Copyright &copy; 2015 Causes Admin
             
             <ul class="f-menu">
                 <li><a href="">Home</a></li>
@@ -306,20 +378,139 @@
         </script>
 
         <script type="text/javascript">
-            var newCause = {};
-            function handleInputChange(event) {
+            var newCause = {
+                content: {
+                    default: {},
+                    variable: {}
+                }
+            };
+            var handleInputChange  =(event) => {
                 newCause[$(event).attr('name')] = $(event).val();
+            }
+
+            var handleDefaultContentInputChange = (event) => {
+                newCause['content']['default'][$(event).attr('name')] = $(event).val();
+            }
+
+            var handleTypeChange = (event) => {
+                switch($(event).val()) {
+                    case 'image': 
+                        newCause['content']['variable']['type'] = $(event).val();
+                        let el = $(event).parents().eq(4).next()[0];
+                        let html = `
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="f-500 c-black m-b-20">Image Preview</p>
+                                
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                                            <div>
+                                                <span class="btn btn-info btn-file">
+                                                    <span class="fileinput-new">Select image</span>
+                                                    <span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="...">
+                                                </span>
+                                                <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Caption</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="caption" onchange="handleVariableContentInputChange(this, event);" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="c-black f-500 m-b-20">Position</p>
+                                        <div class="form-group">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select onchange="handlePositionChange(this, event)" name="position" class="form-control">
+                                                        <option>Select an Option</option>
+                                                        <option value="image">Left</option>
+                                                        <option value="text">Right</option>
+                                                        <option value="highlight">Center</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        $(el).html(html);
+                        break;
+                    default: 
+                        
+                }
+            }
+
+            var newVariableSection = (event) => {
+                let html = `
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Type</p>
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select onchange="handleTypeChange(this, event)" name="type" class="form-control">
+                                                <option>Select an Option</option>
+                                                <option value="image">Image</option>
+                                                <option value="text">Text</option>
+                                                <option value="highlight">Highlight</option>
+                                                <option value="video">Video</option>
+                                                <option value="sectionHeading">Section Heading</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-input"></div>
+
+                    </div>
+                `
+                $("#new-variable-section").append(html);
+            }
+
+            var renderImageContentInput = () => {
+                return (`
+                    <div>
+                        <p class="f-500 c-black m-b-20">Image Preview</p>
+                                
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                            <div>
+                                <span class="btn btn-info btn-file">
+                                    <span class="fileinput-new">Select image</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input type="file" name="...">
+                                </span>
+                                <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                `)
             }
 
             $("#submit-cause").click( () => {
                 newCause['raised_amount'] = 0;
                 newCause['id'] = causes ? (causes.length + 1) : 1;
-                firebase.database().ref('causes/' + 0).set(newCause, (error) => {
+                firebase.database().ref('causes/' + newCause['id']).set(newCause, (error) => {
                     if(error) {
                         console.log(error);
                     }
                     else {
-                        alert("Data Succefully added!");
+                        alert("New cause succefully added!");
                         window.location.href = '/';
                     }
                 });
