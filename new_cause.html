@@ -402,7 +402,7 @@
                 caption: null,
                 heading: null,
                 text: null,
-                position: null
+                width: null
             }
             var handleInputChange=(event) => {
                 newCause[$(event).attr('name')] = $(event).val();
@@ -492,7 +492,7 @@
                     caption: null,
                     heading: null,
                     text: null,
-                    position: null
+                    width: null
                 }
             }
 
@@ -528,15 +528,14 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <p class="c-black f-500 m-b-20">Position</p>
+                                <p class="c-black f-500 m-b-20">Width</p>
                                 <div class="form-group">
                                     <div class="fg-line">
                                         <div class="select">
-                                            <select onchange="handleVariableContentInputChange(this, event)" name="position" class="form-control">
+                                            <select onchange="handleVariableContentInputChange(this, event)" name="width" class="form-control">
                                                 <option>Select an Option</option>
-                                                <option value="left">Left</option>
-                                                <option value="right">Right</option>
-                                                <option value="center">Center</option>
+                                                <option value="half">Half</option>
+                                                <option value="full">Full</option>
                                             </select>
                                         </div>
                                     </div>
@@ -570,6 +569,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Width</p>
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select onchange="handleVariableContentInputChange(this, event)" name="width" class="form-control">
+                                                <option>Select an Option</option>
+                                                <option value="half">Half</option>
+                                                <option value="full">Full</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `)
             }
@@ -587,6 +602,22 @@
                                 </div>
                             </div>
                         </div> 
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Width</p>
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select onchange="handleVariableContentInputChange(this, event)" name="width" class="form-control">
+                                                <option>Select an Option</option>
+                                                <option value="half">Half</option>
+                                                <option value="full">Full</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `)
             }
@@ -597,6 +628,27 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label>Video title</label>
+                                    <div class="fg-line">
+                                        <input type="text" name="title" onchange="handleVariableContentInputChange(this, event);" class="form-control" placeholder="Video title">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Video description</label>
+                                    <div class="fg-line">
+                                        <textarea name="description" onchange="handleVariableContentInputChange(this, event);" class="form-control" placeholder="Video description">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label>Video link</label>
                                     <div class="fg-line">
                                         <input type="text" name="video" onchange="handleVariableContentInputChange(this, event);" class="form-control" placeholder="Paste video link">
@@ -604,6 +656,22 @@
                                 </div>
                             </div>
                         </div> 
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Width</p>
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select onchange="handleVariableContentInputChange(this, event)" name="width" class="form-control">
+                                                <option>Select an Option</option>
+                                                <option value="half">Half</option>
+                                                <option value="full">Full</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `)
             }
@@ -621,6 +689,22 @@
                                 </div>
                             </div>
                         </div> 
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="c-black f-500 m-b-20">Width</p>
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="select">
+                                            <select onchange="handleVariableContentInputChange(this, event)" name="width" class="form-control">
+                                                <option>Select an Option</option>
+                                                <option value="half">Half</option>
+                                                <option value="full">Full</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `)
             }
@@ -630,16 +714,16 @@
                 newCause['id'] = causes ? (causes.length) : 1;
                 newCause['content']['variable'].push(variableContent);
                 console.log(newCause);
-                // firebase.database().ref('causes/' + newCause['id']).set(newCause, (error) => {
-                //     if(error) {
-                //         console.log(error);
-                //     }
-                //     else {
-                //         alert("New cause succefully added!");
-                //         window.location.href = '/';
-                //     }
-                // });
-            })
+                firebase.database().ref('causes/' + newCause['id']).set(newCause, (error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+                    else {
+                        alert("New cause succefully added!");
+                        window.location.href = '/';
+                    }
+                });
+            });
         </script>
         
     </body>
