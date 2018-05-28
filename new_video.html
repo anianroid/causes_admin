@@ -142,8 +142,7 @@
                                         <div class="form-group">
                                             <label>Video description</label>
                                             <div class="fg-line">
-                                                <textarea name="description" onchange="handleInputChange(this, event);" class="form-control" placeholder="Video description">
-                                                </textarea>
+                                                <input type="text" name="description" onchange="handleInputChange(this, event);" class="form-control" placeholder="Video description">
                                             </div>
                                         </div>
                                     </div>
@@ -158,6 +157,20 @@
                                         </div>
                                     </div>
                                 </div> 
+                                <div class="row">
+                                    <div class="col-sm-6">                        
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div>
+                                                <span class="btn btn-info btn-file">
+                                                    <span class="fileinput-new">Select image</span>
+                                                    <span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="image" onchange="handleImageInputChange(this, event)">
+                                                </span>
+                                                <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary" id="submit-video" type="button">Submit</button>
                                 </div>
@@ -280,11 +293,32 @@
                 id: null,
                 title: null,
                 description: null,
-                link: null
+                link: null,
+                image: null
             };
 
             var handleInputChange=(event) => {
                 newVideo[$(event).attr('name')] = $(event).val();
+            }
+
+            var handleImageInputChange = (event) => {
+                const ref = firebase.storage().ref();
+                $(event).attr('id', 'photo');
+                const file = document.querySelector('#photo').files[0]
+                console.log(file);
+                const name = (+new Date()) + '-' + file.name;
+                const metadata = {
+                  contentType: file.type
+                };
+                const task = ref.child(name).put(file, metadata);
+                task.then((snapshot) => {
+                  alert('Uploading...');
+                  const url = snapshot.downloadURL;
+                  console.log(url);
+                  newVideo['image'] = url;
+                }).catch((error) => {
+                  console.error(error);
+                });
             }
 
 
