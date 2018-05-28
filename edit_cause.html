@@ -33,6 +33,12 @@
         
     </head>
     <body>
+
+        <script type="text/javascript">
+            var cause = JSON.parse(localStorage.cause);
+            console.log(cause);
+        </script>
+
         <header id="header" class="clearfix" data-current-skin="blue">
             <ul class="header-inner">
                 <li id="menu-trigger" data-trigger="#sidebar">
@@ -102,16 +108,16 @@
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Our Team</a>
 
                         <ul>
-                            <li><a href="new_member.html">Add new member</a></li>
-                            <li><a href="team_listing.html">Listing</a></li>
+                            <li><a href="textual-menu.html">Add new member</a></li>
+                            <li><a href="image-logo.html">Listing</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Videos</a>
 
                         <ul>
-                            <li><a href="new_video.html">Add new video</a></li>
-                            <li><a href="videos.html">Listing</a></li>
+                            <li><a href="textual-menu.html">Add new video</a></li>
+                            <li><a href="image-logo.html">Listing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -119,131 +125,6 @@
             
             
             <section id="content">
-                <div class="container">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Add a new Cause <small>All the fields are mandatory.</small></h2>
-                        </div>
-                        
-                        <div class="card-body card-padding"> 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <div class="fg-line">
-                                            <input type="text" name="title" onchange="handleInputChange(this, event);" class="form-control" placeholder="Title">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Sub-title</label>
-                                        <div class="fg-line">
-                                            <input type="text" name="subtitle" onchange="handleInputChange(this, event);" class="form-control" placeholder="Subtitle">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <div class="fg-line">
-                                            <textarea class="form-control" name="description" onchange="handleInputChange(this, event);" rows="5" placeholder="Let us type some lorem ipsum...."></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Required Amount</label>
-                                        <div class="fg-line">
-                                            <input type="number" name="requiredAmount" onchange="handleInputChange(this, event);" class="form-control" placeholder="Eg. 1000">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Payment Link</label>
-                                        <div class="fg-line">
-                                            <input type="text" name="paymentLink" onchange="handleInputChange(this, event);" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <h2>Content</h2>
-                            </div>  
-
-                            <div>
-                                <h3>Header content</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Aim</label>
-                                        <div class="fg-line">
-                                            <input type="text" name="aim" onchange="handleDefaultContentInputChange(this, event);" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Video Link</label>
-                                        <div class="fg-line">
-                                            <input type="text" name="videoLink" onchange="handleDefaultContentInputChange(this, event);" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3>Variable content</h3>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p class="c-black f-500 m-b-20">Type</p>
-                                        <div class="form-group">
-                                            <div class="fg-line">
-                                                <div class="select">
-                                                    <select onchange="handleTypeChange(this, event)" name="type" class="form-control">
-                                                        <option>Select an Option</option>
-                                                        <option value="image">Image</option>
-                                                        <option value="text">Text</option>
-                                                        <option value="highlight">Highlight</option>
-                                                        <option value="video">Video</option>
-                                                        <option value="sectionHeading">Section Heading</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="content-input"></div>
-                            </div>
-
-                            <div id="new-variable-section"></div>
-
-                            <div class="form-group">
-                                <button class="btn btn-primary" onclick="newVariableSection()" type="button">Add new section</button>
-                            </div>
-                            
-                            <div class="form-group">
-                                <button class="btn btn-primary" id="submit-cause" type="button">Submit</button>
-                            </div>                
-                        </div>
-                    </div>
-                </div>
             </section>
         </section>
         
@@ -344,6 +225,139 @@
         <script src="js/charts.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
+
+
+
+        <script type="text/javascript">
+            $("#content").html(`
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Edit Cause <small>All the fields are mandatory.</small></h2>
+                        </div>
+                        
+                        <div class="card-body card-padding"> 
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <div class="fg-line">
+                                            <input type="text" name="title" onchange="handleInputChange(this, event);" class="form-control" value="${cause.title}" placeholder="Title">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Sub-title</label>
+                                        <div class="fg-line">
+                                            <input type="text" name="subtitle" onchange="handleInputChange(this, event);" class="form-control" placeholder="Subtitle" value="${cause.subtitle}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <div class="fg-line">
+                                            <textarea class="form-control" name="description" onchange="handleInputChange(this, event);" rows="5" placeholder="${cause.description}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Required Amount</label>
+                                        <div class="fg-line">
+                                            <input type="number" name="requiredAmount" onchange="handleInputChange(this, event);" class="form-control" placeholder="Eg. 1000" value="${cause.requiredAmount}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Payment Link</label>
+                                        <div class="fg-line">
+                                            <input type="text" name="paymentLink" onchange="handleInputChange(this, event);" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h2>Content</h2>
+                            </div>  
+
+                            <div>
+                                <h3>Header content</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Aim</label>
+                                        <div class="fg-line">
+                                            <input type="text" name="aim" onchange="handleDefaultContentInputChange(this, event);" class="form-control" value="${cause.content.default.aim}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Video Link</label>
+                                        <div class="fg-line">
+                                            <input type="text" name="videoLink" onchange="handleDefaultContentInputChange(this, event);" class="form-control" value="${cause.content.default.videoLink}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3>Variable content</h3>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="c-black f-500 m-b-20">Type</p>
+                                        <div class="form-group">
+                                            <div class="fg-line">
+                                                <div class="select">
+                                                    <select onchange="handleTypeChange(this, event)" name="type" class="form-control">
+                                                        <option>Select an Option</option>
+                                                        <option value="image">Image</option>
+                                                        <option value="text">Text</option>
+                                                        <option value="highlight">Highlight</option>
+                                                        <option value="video">Video</option>
+                                                        <option value="sectionHeading">Section Heading</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="content-input"></div>
+                            </div>
+
+                            <div id="new-variable-section"></div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary" onclick="newVariableSection()" type="button">Add new section</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button class="btn btn-primary" id="submit-cause" type="button">Submit</button>
+                            </div>                
+                        </div>
+                    </div>
+                </div>
+            `);
+        </script>
+
 
 
         <!-- Data Table -->

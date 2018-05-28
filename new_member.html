@@ -102,16 +102,16 @@
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Our Team</a>
 
                         <ul>
-                            <li><a href="textual-menu.html">Add new member</a></li>
-                            <li><a href="image-logo.html">Listing</a></li>
+                            <li><a href="new_member.html">Add new member</a></li>
+                            <li><a href="team_listing.html">Listing</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Videos</a>
 
                         <ul>
-                            <li><a href="textual-menu.html">Add new video</a></li>
-                            <li><a href="image-logo.html">Listing</a></li>
+                            <li><a href="new_video.html">Add new video</a></li>
+                            <li><a href="videos.html">Listing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -122,23 +122,90 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-header">
-                            <h2>Causes Listing <small>Listing all active causes.</small></h2>
+                            <h2>Add a new member <small>All the fields are mandatory.</small></h2>
                         </div>
                         
-                        <table id="data-table-command" class="table table-striped table-vmiddle" data-url="/api/data/basic">
-                            <thead>
-                                <tr>
-                                    <th data-column-id="id" data-type="numeric">ID</th>
-                                    <th data-column-id="title">Title</th>
-                                    <th data-column-id="raisedAmount" data-order="asc">Received amount</th>
-                                    <th data-column-id="requiredAmount" data-sortable="true">Required amount</th>
-                                    <th data-formatter="commands"></th>
-                                </tr>
-                            </thead>
-                            <tbody id="render-rows">
-                            
-                            </tbody>
-                        </table>
+                        <div class="card-body card-padding"> 
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Member Name</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="name" onchange="handleInputChange(this, event);" class="form-control" placeholder="Eg. Rakesh Yadav">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Member role</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="role" onchange="handleInputChange(this, event);" class="form-control" placeholder="Eg. Content Writer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Twitter link</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="twitterLink" onchange="handleInputChange(this, event);" class="form-control" placeholder="Paste Twitter link">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Facebook link</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="facebookLink" onchange="handleInputChange(this, event);" class="form-control" placeholder="Paste Facebook link">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Linkedin link</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="linkedinLink" onchange="handleInputChange(this, event);" class="form-control" placeholder="Paste LinkedIn link">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Instagram link</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="instagramLink" onchange="handleInputChange(this, event);" class="form-control" placeholder="Paste Instagram link">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="row">
+                                    <div class="col-sm-6">                        
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div>
+                                                <span class="btn btn-info btn-file">
+                                                    <span class="fileinput-new">Select image</span>
+                                                    <span class="fileinput-exists">Change</span>
+                                                    <input type="file" name="image" onchange="handleImageInputChange(this, event)">
+                                                </span>
+                                                <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" id="submit-member" type="button">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -243,60 +310,63 @@
         <script src="js/demo.js"></script>
 
 
-        <!-- Data Table -->
         <script type="text/javascript">
-            $(document).ready(function(){
-                //Command Buttons
-                $("#data-table-command").bootgrid({
-                    css: {
-                        icon: 'zmdi icon',
-                        iconColumns: 'zmdi-view-module',
-                        iconDown: 'zmdi-expand-more',
-                        iconRefresh: 'zmdi-refresh',
-                        iconUp: 'zmdi-expand-less'
-                    },
-                    formatters: {
-                        "commands": function(column, row) {
-                            id = parseInt(row.id);
-                            return  "<button type=\"button\" class=\"btn btn-icon command-edit waves-effect waves-circle\" data-row-id=\"" + row.id + "\" onclick=\"editCause(" + id + ")\"><span class=\"zmdi zmdi-edit\"></span></button> <button type=\"button\" class=\"btn btn-icon command-delete waves-effect waves-circle\" data-row-id=\"" + row.id + "\" onclick=\"deleteCause(" + id + ")\"><span class=\"zmdi zmdi-delete\"></span></button>";
-                        }
-                    }
-                });
+            var membersRef = firebase.database().ref('members');
+            var members;
+            membersRef.on('value', function(snapshot) {
+              members = snapshot.val();
             });
         </script>
 
-
         <script type="text/javascript">
-            var causes;
-            var causesRef = firebase.database().ref('causes');
-            causesRef.on('value', function(snapshot) {
-              causes = snapshot.val();
-              var causesArray = Object.keys(causes).map((i) => {
-                return causes[i];
-              });
-              // console.log(causesArray);
-              // causes.map((cause, index) => {
-              //   $("#render-rows").append(`
-              //       <tr>
-              //           <td>${index}</td>
-              //           <td>${cause.title}</td>
-              //           <td>${cause.raised_amount}</td>
-              //           <td>${cause.required_amount}</td>
-              //       </tr>
-              //   `);
-              // })
-              $("#data-table-command").bootgrid("append", causesArray);
+            var newMember = {
+                id: null,
+                name: null,
+                role: null,
+                facebookLink: null,
+                twitterLink: null,
+                instagramLink: null,
+                linkedinLink: null,
+                image: null
+            };
+
+            var handleInputChange=(event) => {
+                newMember[$(event).attr('name')] = $(event).val();
+            }
+
+            var handleImageInputChange = (event) => {
+                const ref = firebase.storage().ref();
+                $(event).attr('id', 'photo');
+                const file = document.querySelector('#photo').files[0]
+                console.log(file);
+                const name = (+new Date()) + '-' + file.name;
+                const metadata = {
+                  contentType: file.type
+                };
+                const task = ref.child(name).put(file, metadata);
+                task.then((snapshot) => {
+                  alert('Uploading...');
+                  const url = snapshot.downloadURL;
+                  console.log(url);
+                  newMember['image'] = url;
+                }).catch((error) => {
+                  console.error(error);
+                });
+            }
+
+            $("#submit-member").click( () => {
+                newMember['id'] = members ? (members.length) : 1;
+                console.log(newMember);
+                firebase.database().ref('members/' + newMember['id']).set(newMember, (error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+                    else {
+                        alert("New team member succefully added!");
+                        window.location.href = '/';
+                    }
+                });
             });
-
-
-            function deleteCause(id) {
-                causesRef.child(id).remove();
-            }
-
-            function editCause(id) {
-                localStorage.setItem('cause', JSON.stringify(causes[id]));
-                window.location.href = "edit_cause.html";
-            }
         </script>
         
     </body>

@@ -102,16 +102,16 @@
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Our Team</a>
 
                         <ul>
-                            <li><a href="textual-menu.html">Add new member</a></li>
-                            <li><a href="image-logo.html">Listing</a></li>
+                            <li><a href="new_member.html">Add new member</a></li>
+                            <li><a href="team_listing.html">Listing</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Videos</a>
 
                         <ul>
-                            <li><a href="textual-menu.html">Add new video</a></li>
-                            <li><a href="image-logo.html">Listing</a></li>
+                            <li><a href="new_video.html">Add new video</a></li>
+                            <li><a href="videos.html">Listing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -122,23 +122,47 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-header">
-                            <h2>Causes Listing <small>Listing all active causes.</small></h2>
+                            <h2>Add a new video <small>All the fields are mandatory.</small></h2>
                         </div>
                         
-                        <table id="data-table-command" class="table table-striped table-vmiddle" data-url="/api/data/basic">
-                            <thead>
-                                <tr>
-                                    <th data-column-id="id" data-type="numeric">ID</th>
-                                    <th data-column-id="title">Title</th>
-                                    <th data-column-id="raisedAmount" data-order="asc">Received amount</th>
-                                    <th data-column-id="requiredAmount" data-sortable="true">Required amount</th>
-                                    <th data-formatter="commands"></th>
-                                </tr>
-                            </thead>
-                            <tbody id="render-rows">
-                            
-                            </tbody>
-                        </table>
+                        <div class="card-body card-padding"> 
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Video title</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="title" onchange="handleInputChange(this, event);" class="form-control" placeholder="Video title">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Video description</label>
+                                            <div class="fg-line">
+                                                <textarea name="description" onchange="handleInputChange(this, event);" class="form-control" placeholder="Video description">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Video link</label>
+                                            <div class="fg-line">
+                                                <input type="text" name="link" onchange="handleInputChange(this, event);" class="form-control" placeholder="Paste video link">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <button class="btn btn-primary" id="submit-video" type="button">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -243,60 +267,40 @@
         <script src="js/demo.js"></script>
 
 
-        <!-- Data Table -->
         <script type="text/javascript">
-            $(document).ready(function(){
-                //Command Buttons
-                $("#data-table-command").bootgrid({
-                    css: {
-                        icon: 'zmdi icon',
-                        iconColumns: 'zmdi-view-module',
-                        iconDown: 'zmdi-expand-more',
-                        iconRefresh: 'zmdi-refresh',
-                        iconUp: 'zmdi-expand-less'
-                    },
-                    formatters: {
-                        "commands": function(column, row) {
-                            id = parseInt(row.id);
-                            return  "<button type=\"button\" class=\"btn btn-icon command-edit waves-effect waves-circle\" data-row-id=\"" + row.id + "\" onclick=\"editCause(" + id + ")\"><span class=\"zmdi zmdi-edit\"></span></button> <button type=\"button\" class=\"btn btn-icon command-delete waves-effect waves-circle\" data-row-id=\"" + row.id + "\" onclick=\"deleteCause(" + id + ")\"><span class=\"zmdi zmdi-delete\"></span></button>";
-                        }
-                    }
-                });
+            var videosRef = firebase.database().ref('videos');
+            var videos;
+            videosRef.on('value', function(snapshot) {
+              videos = snapshot.val();
             });
         </script>
 
-
         <script type="text/javascript">
-            var causes;
-            var causesRef = firebase.database().ref('causes');
-            causesRef.on('value', function(snapshot) {
-              causes = snapshot.val();
-              var causesArray = Object.keys(causes).map((i) => {
-                return causes[i];
-              });
-              // console.log(causesArray);
-              // causes.map((cause, index) => {
-              //   $("#render-rows").append(`
-              //       <tr>
-              //           <td>${index}</td>
-              //           <td>${cause.title}</td>
-              //           <td>${cause.raised_amount}</td>
-              //           <td>${cause.required_amount}</td>
-              //       </tr>
-              //   `);
-              // })
-              $("#data-table-command").bootgrid("append", causesArray);
+            var newVideo = {
+                id: null,
+                title: null,
+                description: null,
+                link: null
+            };
+
+            var handleInputChange=(event) => {
+                newVideo[$(event).attr('name')] = $(event).val();
+            }
+
+
+            $("#submit-video").click( () => {
+                newVideo['id'] = videos ? (videos.length) : 1;
+                console.log(newVideo);
+                firebase.database().ref('videos/' + newVideo['id']).set(newVideo, (error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+                    else {
+                        alert("New video succefully added!");
+                        window.location.href = '/';
+                    }
+                });
             });
-
-
-            function deleteCause(id) {
-                causesRef.child(id).remove();
-            }
-
-            function editCause(id) {
-                localStorage.setItem('cause', JSON.stringify(causes[id]));
-                window.location.href = "edit_cause.html";
-            }
         </script>
         
     </body>
