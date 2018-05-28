@@ -323,7 +323,7 @@
 
 
             $("#submit-video").click( () => {
-                newVideo['id'] = videos ? (videos.length) : 1;
+                newVideo['id'] = videos ? (videos.length) : 0;
                 console.log(newVideo);
                 firebase.database().ref('videos/' + newVideo['id']).set(newVideo, (error) => {
                     if(error) {

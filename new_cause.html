@@ -730,7 +730,7 @@
 
             $("#submit-cause").click( () => {
                 newCause['raisedAmount'] = 0;
-                newCause['id'] = causes ? (causes.length) : 1;
+                newCause['id'] = causes ? (causes.length) : 0;
                 newCause['content']['variable'].push(variableContent);
                 console.log(newCause);
                 firebase.database().ref('causes/' + newCause['id']).set(newCause, (error) => {
