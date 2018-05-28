@@ -102,16 +102,16 @@
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Our Team</a>
 
                         <ul>
-                            <li><a href="new_member.html">Add new member</a></li>
-                            <li><a href="team_listing.html">Listing</a></li>
+                            <li><a href="textual-menu.html">Add new member</a></li>
+                            <li><a href="image-logo.html">Listing</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Videos</a>
 
                         <ul>
-                            <li><a href="new_video.html">Add new video</a></li>
-                            <li><a href="videos.html">Listing</a></li>
+                            <li><a href="textual-menu.html">Add new video</a></li>
+                            <li><a href="image-logo.html">Listing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -129,9 +129,10 @@
                             <thead>
                                 <tr>
                                     <th data-column-id="id" data-type="numeric">ID</th>
-                                    <th data-column-id="title" data-type="text">Title</th>
-                                    <th data-column-id="raisedAmount" data-order="asc">Received amount</th>
-                                    <th data-column-id="requiredAmount" data-sortable="true">Required amount</th>
+                                    <th data-column-id="title">Title</th>
+                                    <th data-column-id="descriptions">Description</th>
+                                    <th data-column-id="link">Link</th>
+                                    <th data-column-id="image">Image</th>
                                     <th data-formatter="commands"></th>
                                 </tr>
                             </thead>
@@ -267,34 +268,34 @@
 
 
         <script type="text/javascript">
-            var causes;
-            var causesRef = firebase.database().ref('causes');
-            causesRef.on('value', function(snapshot) {
-              causes = snapshot.val();
-              var causesArray = Object.keys(causes).map((i) => {
-                return causes[i];
+            var videos;
+            var videosRef = firebase.database().ref('videos');
+            videosRef.on('value', function(snapshot) {
+              videos = snapshot.val();
+              var videosArray = Object.keys(videos).map((i) => {
+                return videos[i];
               });
               // console.log(causesArray);
-              // causes.map((cause, index) => {
+              // videos.map((video, index) => {
               //   $("#render-rows").append(`
               //       <tr>
               //           <td>${index}</td>
-              //           <td>${cause.title}</td>
-              //           <td>${cause.raised_amount}</td>
-              //           <td>${cause.required_amount}</td>
+              //           <td>${video.title}</td>
+              //           <td>${video.raised_amount}</td>
+              //           <td>${video.required_amount}</td>
               //       </tr>
               //   `);
               // })
-              $("#data-table-command").bootgrid("append", causesArray);
+              $("#data-table-command").bootgrid("append", videosArray);
             });
 
 
             function deleteCause(id) {
-                causesRef.child(id).remove();
+                videosRef.child(id).remove();
             }
 
             function editCause(id) {
-                localStorage.setItem('cause', JSON.stringify(causes[id]));
+                localStorage.setItem('video', JSON.stringify(videos[id]));
                 window.location.href = "edit_cause.html";
             }
         </script>

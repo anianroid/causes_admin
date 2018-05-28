@@ -102,16 +102,16 @@
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Our Team</a>
 
                         <ul>
-                            <li><a href="new_member.html">Add new member</a></li>
-                            <li><a href="team_listing.html">Listing</a></li>
+                            <li><a href="textual-menu.html">Add new member</a></li>
+                            <li><a href="image-logo.html">Listing</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
                         <a href=""><i class="zmdi zmdi-view-compact"></i> Videos</a>
 
                         <ul>
-                            <li><a href="new_video.html">Add new video</a></li>
-                            <li><a href="videos.html">Listing</a></li>
+                            <li><a href="textual-menu.html">Add new video</a></li>
+                            <li><a href="image-logo.html">Listing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -129,9 +129,9 @@
                             <thead>
                                 <tr>
                                     <th data-column-id="id" data-type="numeric">ID</th>
-                                    <th data-column-id="title" data-type="text">Title</th>
-                                    <th data-column-id="raisedAmount" data-order="asc">Received amount</th>
-                                    <th data-column-id="requiredAmount" data-sortable="true">Required amount</th>
+                                    <th data-column-id="name">Name</th>
+                                    <th data-column-id="role" data-order="asc">Role</th>
+                                    <th data-column-id="description" data-sortable="true">Description</th>
                                     <th data-formatter="commands"></th>
                                 </tr>
                             </thead>
@@ -267,35 +267,24 @@
 
 
         <script type="text/javascript">
-            var causes;
-            var causesRef = firebase.database().ref('causes');
-            causesRef.on('value', function(snapshot) {
-              causes = snapshot.val();
-              var causesArray = Object.keys(causes).map((i) => {
-                return causes[i];
+            var members;
+            var membersRef = firebase.database().ref('members');
+            membersRef.on('value', function(snapshot) {
+              members = snapshot.val();
+              var causesArray = Object.keys(members).map((i) => {
+                return members[i];
               });
-              // console.log(causesArray);
-              // causes.map((cause, index) => {
-              //   $("#render-rows").append(`
-              //       <tr>
-              //           <td>${index}</td>
-              //           <td>${cause.title}</td>
-              //           <td>${cause.raised_amount}</td>
-              //           <td>${cause.required_amount}</td>
-              //       </tr>
-              //   `);
-              // })
               $("#data-table-command").bootgrid("append", causesArray);
             });
 
 
             function deleteCause(id) {
-                causesRef.child(id).remove();
+                membersRef.child(id).remove();
             }
 
             function editCause(id) {
-                localStorage.setItem('cause', JSON.stringify(causes[id]));
-                window.location.href = "edit_cause.html";
+                localStorage.setItem('member', JSON.stringify(members[id]));
+                window.location.href = "edit_member.html";
             }
         </script>
         
